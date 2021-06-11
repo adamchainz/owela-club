@@ -1,2 +1,4 @@
 django
 django-htmx
+pytest
+pytest-django

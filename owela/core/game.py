@@ -100,6 +100,6 @@ def find_winner(board):
         board[row][column] < 2 for row in range(2, 4) for column in range(12)
     )
     if human_cannot_move:
-        return Player.HUMAN
+        return Player.AI
 
     return None
