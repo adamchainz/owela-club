@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+
+{% block content %}
+  <p>
+    Welcome to Owela central.
+  </p>
+
+  {% if games %}
+    <p>
+      Here are all the games so far:
+    </p>
+
+    <ul>
+      {% for game in games %}
+        <li>
+          <a href="/game/{{ game.id }}">Game {{ game.id }}</a>
+          {% if game.state == GameState.IN_PROGRESS %}
+            <em>in progress</em>
+          {% elif game.state == GameState.FINISHED %}
+            <em>finished</em>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>
+      No games have yet been played.
+    </p>
+  {% endif %}
+
+  <p>
+    <form method="post" action="/new-game/">
+      <button type="submit">Start a new game</button>
+    </form>
+  </p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Owela</title>
+    <link rel="stylesheet" href="{% static 'milligram-1.4.1.min.css' %}">
+    <meta name="htmx-config" content='{"allowEval": false, "includeIndicatorStyles": false}'>
+    <script src="{% static 'htmx-1.4.1.min.js' %}" async></script>
+  </head>
+  <body style="font-size: 30px" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    {% block content %}{% endblock %}
+  </body>
+</html>
