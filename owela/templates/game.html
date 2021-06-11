@@ -55,6 +55,7 @@
               {% else %}
                 {# selectable #}
                 <a href="#"
+                   hx-trigger="mousedown"
                    hx-post="/game/{{ game.id }}/move/{{ forloop.parentloop.counter0 }}/{{ forloop.counter0 }}/"
                    hx-select="#page"
                    hx-target="#page"
