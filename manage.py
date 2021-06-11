@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-from __future__ import annotations  # noqa: INP001
-
-import os
+import os  # noqa: INP001
 import sys
 
 

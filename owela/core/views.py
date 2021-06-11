@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from django.db.models import Case, When
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
