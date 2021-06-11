@@ -15,17 +15,14 @@ class Game(models.Model):
     class Meta:
         constraints = [
             models.CheckConstraint(
-                name="%(app_label)s_%(class)s_state_valid",
-                check=models.Q(state__in=GameState.values),
+                name="%(app_label)s_%(class)s_state",
+                check=(
+                    models.Q(state=GameState.IN_PROGRESS, winner__isnull=True)
+                    | models.Q(state=GameState.FINISHED, winner__in=Player.values)
+                ),
             ),
             models.CheckConstraint(
                 name="%(app_label)s_%(class)s_next_turn_valid",
                 check=models.Q(next_turn__in=Player.values),
-            ),
-            models.CheckConstraint(
-                name="%(app_label)s_%(class)s_winner_valid",
-                check=(
-                    models.Q(winner__isnull=True) | models.Q(winner__in=Player.values)
-                ),
             ),
         ]
