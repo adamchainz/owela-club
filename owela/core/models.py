@@ -1,6 +1,7 @@
 from django.db import models
 
 from owela.core.enums import GameState, Player
+from owela.core.game import new_board
 
 
 class Game(models.Model):
@@ -9,7 +10,7 @@ class Game(models.Model):
     )
     next_turn = models.IntegerField(choices=Player.choices, default=Player.HUMAN)
     winner = models.IntegerField(choices=Player.choices, null=True)
-    board = models.JSONField()
+    board = models.JSONField(default=new_board)
 
     class Meta:
         constraints = [

@@ -8,11 +8,11 @@
   {% if game.state == GameState.FINISHED %}
     <p>
       <strong>
-        Game over - you
+        Game over -
           {% if game.winner == Player.HUMAN %}
-            win! 🎉
+            you win! 🎉
           {% else %}
-            lose... 😭
+            you lose... 😭
           {% endif %}
       </strong>
     </p>

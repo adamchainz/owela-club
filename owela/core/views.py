@@ -1,10 +1,10 @@
 from django.db.models import Case, When
-from django.http import Http404
+from django.http import HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods
 
 from owela.core.enums import GameState, Player
-from owela.core.game import find_winner, make_move, new_board, pick_ai_move
+from owela.core.game import find_winner, make_move, pick_ai_move
 from owela.core.models import Game
 
 
@@ -26,7 +26,7 @@ def index(request):
 
 @require_http_methods(["POST"])
 def new_game(request):
-    game = Game.objects.create(board=new_board())
+    game = Game.objects.create()
     return redirect(f"/game/{game.id}/")
 
 
@@ -63,11 +63,11 @@ def move(request, game_id, row, column):
         next_turn=Player.HUMAN,
     )
     if row < 2 or row > len(game.board):
-        raise Http404("Unknown row")
+        return HttpResponseBadRequest("Bad row")
     if column < 0 or column > len(game.board[0]):
-        raise Http404("Unknown column")
+        return HttpResponseBadRequest("Bad column")
     if game.board[row][column] < 2:
-        raise Http404("Cannot move on square with < 2 seeds")
+        return HttpResponseBadRequest("Cannot move on square with < 2 seeds")
 
     make_move(game.board, row, column)
     game.next_turn = Player.AI

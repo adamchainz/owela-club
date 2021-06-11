@@ -2,6 +2,8 @@
 
 from django.db import migrations, models
 
+from owela.core.game import new_board
+
 
 class Migration(migrations.Migration):
 
@@ -36,7 +38,7 @@ class Migration(migrations.Migration):
                     "winner",
                     models.IntegerField(choices=[(1, "Human"), (2, "Ai")], null=True),
                 ),
-                ("board", models.JSONField()),
+                ("board", models.JSONField(default=new_board)),
             ],
         ),
         migrations.AddConstraint(
