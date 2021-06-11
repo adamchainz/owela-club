@@ -1,4 +1,5 @@
 django
 django-htmx
 pytest
+pytest-cov
 pytest-django

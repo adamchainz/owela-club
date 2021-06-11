@@ -1,2 +1,3 @@
+.coverage*
 db.sqlite3
 venv/
