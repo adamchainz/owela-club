@@ -52,8 +52,24 @@ class MakeMoveTests(SimpleTestCase):
             [2] * 12,
         ]
 
+    def test_inner_row(self):
+        board = [
+            [2] * 12,
+            [0] * 12,
+            [1] * 12,
+            [0] * 12,
+        ]
+
+        make_move(board, 2, 1)
+
+        assert board == [
+            [2] * 12,
+            [0] * 12,
+            [0] * 2 + [1] * 10,
+            [1] * 2 + [0] * 10,
+        ]
+
     def test_capture(self):
-        # Not a valid board in the game, but useful for testing
         # human captures the leftmost column
         board = [
             [2] * 12,
