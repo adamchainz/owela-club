@@ -1,21 +1,63 @@
 {% extends "_base.html" %}
 
+{% block title %}Game {{ game.id }} | {{ block.super }}{% endblock %}
+
 {% block content %}
-  <table id="board">
+  <h2>Game {{ game.id }}</h2>
+
+  {% if game.state == GameState.FINISHED %}
+    <p>
+      <strong>
+        Game over - you
+          {% if game.winner == Player.HUMAN %}
+            win! 🎉
+          {% else %}
+            lose... 😭
+          {% endif %}
+      </strong>
+    </p>
+  {% else %}
+    <p>
+      {% if game.next_turn == Player.HUMAN %}
+        👉 It is your turn.
+      {% else %}
+        💬 The AI is thinking...
+        <span hx-trigger="load delay:1s"
+              hx-post="/game/{{ game.id }}/ai-move/"
+              hx-select="#page"
+              hx-target="#page"
+              hx-swap="outerHTML"
+        ></span>
+      {% endif %}
+    </p>
+  {% endif %}
+
+  <table>
     <tbody>
       {% for row in game.board %}
         <tr>
+          {% if forloop.counter0|divisibleby:2 %}
+            <td rowspan="2">
+              {% if forloop.counter0 == 0 %}
+                🤖 <strong>AI</strong><br>
+                {{ ai_total }}
+              {% else %}
+                🧐 <strong>You</strong><br>
+                {{ human_total }}
+              {% endif %}
+            </td>
+          {% endif %}
           {% for square in row %}
             <td>
-              {% if forloop.parentloop.counter0 < 2 or square < 2 %}
+              {% if forloop.parentloop.counter0 < 2 or square < 2 or not human_can_move %}
                 {# AI or unselectable #}
                 {{ square }}
               {% else %}
                 {# selectable #}
                 <a href="#"
                    hx-post="/game/{{ game.id }}/move/{{ forloop.parentloop.counter0 }}/{{ forloop.counter0 }}/"
-                   hx-select="#board"
-                   hx-target="#board"
+                   hx-select="#page"
+                   hx-target="#page"
                    hx-swap="outerHTML"
                 >
                   {{ square }}

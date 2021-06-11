@@ -2,12 +2,18 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Owela</title>
+    <title>{% block title %}Owela Central{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'milligram-1.4.1.min.css' %}">
+    <link rel="stylesheet" href="{% static 'owela.css' %}">
     <meta name="htmx-config" content='{"allowEval": false, "includeIndicatorStyles": false}'>
     <script src="{% static 'htmx-1.4.1.min.js' %}" async></script>
   </head>
-  <body style="font-size: 30px" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
-    {% block content %}{% endblock %}
+  <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <div class="container">
+      <div class="column column-100" id="page">
+        <h1><a href="/">Owela Central</a></h1>
+        {% block content %}{% endblock %}
+      </div>
+    </div>
   </body>
 </html>
