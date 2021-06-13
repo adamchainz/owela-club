@@ -2,12 +2,11 @@
 Owela Central
 =============
 
-A Django project for playing the Namibian game of Owela against a dumb AI, following the rules described on the `Mancala World wiki <https://mancala.fandom.com/wiki/Owela>`__.
+A Django project for playing the Namibian game of Owela against a dumb AI.
+Built following the rules described on the `Mancala World wiki page for Owela <https://mancala.fandom.com/wiki/Owela>`__.
 
-Setting up
-----------
-
-#. Install pre-commit by following its `instructions <https://pre-commit.com/#install>`__.
+Running
+-------
 
 #. Make a Python 3.9 virtual environment with dependencies:
 
@@ -18,23 +17,69 @@ Setting up
        python -m pip install -U pip wheel
        python -m pip install -r requirements.txt
 
+   The code was developed on Python 3.9 but may run on older versions.
 
 #. Run the tests:
 
-   .. code-block:: sh
+   .. code-block:: console
 
        pytest
 
-   This checks everything is good to go.
-   Django creates a temporary database during the test run.
+   This should show output starting with:
 
-#. Install the `pre-commit <https://pre-commit.com/>`__ hooks:
+   .. code-block:: text
+
+       === test session starts ===
+
+   …and finishing with output like:
+
+   .. code-block:: text
+
+       === 28 passed in 0.74s ===
+
+#. Create the development database:
+
+   .. code-block:: console
+
+       python manage.py migrate
+
+#. Start the development server.
+
+   On Linux and macOS:
+
+   .. code-block:: console
+
+       DEBUG=1 python manage.py runserver
+
+   On Windows:
+
+   .. code-block:: console
+
+       set DEBUG=1
+       python manage.py runserver
+
+Developing
+----------
+
+You’re free to edit the code already, but for the smoothest experience there are some extra tools you can set up.
+
+First, there’s Editorconfig, which ensures your text editor is well configured for editing.
+Install the appropriate `editorconfig plugin <https://editorconfig.org/>`__ for your text editor and the plugin will automatically confgiure your text editor based on the ``.editorconfig`` file.
+
+Second, there’s pre-commit, which runs several code quality tools whenever you run ``git commit``.
+These tools are configured in the ``.pre-commit-config.yaml`` file.
+To set up pre-commit:
+
+#. Install pre-commit by following its `instructions <https://pre-commit.com/#install>`__.
+   You can use your virtual environment’s ``pip`` for the simplest setup.
+
+#. Install the `pre-commit <https://pre-commit.com/>`__ hooks into your local repository:
 
    .. code-block:: sh
 
        pre-commit install
 
-   This runs code quality and formatting checks every time you commit, such as Black and Flake8.
+   This will configure Git to run pre-commit before each commit.
 
 #. Check all files in the repository pass your pre-commit setup:
 
@@ -42,43 +87,35 @@ Setting up
 
        pre-commit run --all-files
 
-#. Install the `editorconfig plugin <https://editorconfig.org/>`__ for your text editor.
+   You should see many ``Passed`` messages, such as:
 
-#. Set up the development database:
+   .. code-block:: plain
 
-   .. code-block:: console
+       isort....................................................................Passed
+       flake8...................................................................Passed
 
-       python manage.py migrate
+Extra tasks
+-----------
 
-   This creates the development database.
-
-#. Start the development server:
-
-   .. code-block:: console
-
-       DEBUG=1 python manage.py runserver
-
-Extensions
-----------
-
-This site has been built as a demo of Django with htmx.
-It’s therefore missing some useful features.
+This site has only been built as a demo of using htmx with Django.
+It’s therefore missing some useful features for playing the game.
 Here are some ideas of how to extend it...
 
 * Deploy the game online by using hosting such as Heroku and following the `Django deployment checklist <https://docs.djangoproject.com/en/stable/howto/deployment/checklist/>`__.
 
-* Make the board look nicer.
+* Make the board look good, maybe using a stony texture or showing the actual seeds.
 
 * Display more information about the last two moves, such as highlighting selected squares and affected squares.
 
-* Make the AI smarter - perhaps based on some heuristics such as “move the biggest square” or “prefer to move on the inner row”.
-  Allow selection of which AI to play against.
+* Make the AI smarter - perhaps based on some heuristics such as “move from the biggest square” or “prefer moves on the inner row”.
+
+* Have multiple AI functiosn and allow new games to pick which one to play against.
 
 * Allow selecting different board widths.
 
-* Allow the rule variations such as `Hus <https://mancala.fandom.com/wiki/Hus>`__, and other regional house rules.
+* Allow rule variations such as `Hus <https://mancala.fandom.com/wiki/Hus>`__ or regional/house rules.
 
 * Allow player-versus-player games.
   htmx’s `hx-trigger polling <https://dev.htmx.org/attributes/hx-trigger/>`__ can be used for simple updating of the board state.
 
-* Add login so players can track their games.
+* Add a login function so players can track their games.
