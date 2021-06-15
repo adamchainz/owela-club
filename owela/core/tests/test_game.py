@@ -69,7 +69,25 @@ class MakeMoveTests(SimpleTestCase):
             [1] * 2 + [0] * 10,
         ]
 
-    def test_capture(self):
+    def test_capture_inner(self):
+        # human captures the leftmost column
+        board = [
+            [0] * 12,
+            [2] * 12,
+            [1] * 2 + [0] * 10,
+            [0] * 12,
+        ]
+
+        make_move(board, 2, 1)
+
+        assert board == [
+            [0] * 12,
+            [0] + [2] * 11,
+            [0] * 12,
+            [1] * 4 + [0] * 8,
+        ]
+
+    def test_capture_inner_and_outer(self):
         # human captures the leftmost column
         board = [
             [2] * 12,

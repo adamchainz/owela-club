@@ -51,14 +51,11 @@ def make_move(board, row, column):
                 opposite_row - 1 if opposite_row <= 1 else opposite_row + 1
             )
 
-            if (
-                is_inner_row
-                and board[opposite_row][column] > 0
-                and board[opposite_outer_row][column] > 0
-            ):
+            if is_inner_row and board[opposite_row][column] > 0:
                 # capture
                 hand_seeds += board[opposite_row][column]
                 board[opposite_row][column] = 0
+
                 hand_seeds += board[opposite_outer_row][column]
                 board[opposite_outer_row][column] = 0
 
