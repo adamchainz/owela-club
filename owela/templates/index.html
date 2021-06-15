@@ -1,26 +1,18 @@
 {% extends "_base.html" %}
 
 {% block content %}
-  {% if games %}
-    <p>
-      Here are all the games so far:
-    </p>
-
+  <h2>Games in Progress</h2>
+  {% if games_in_progress %}
     <ul>
-      {% for game in games %}
+      {% for game in games_in_progress %}
         <li>
           <a href="/game/{{ game.id }}">Game {{ game.id }}</a>
-          {% if game.state == GameState.IN_PROGRESS %}
-            <em>in progress</em>
-          {% elif game.state == GameState.FINISHED %}
-            <em>finished</em>
-          {% endif %}
         </li>
       {% endfor %}
     </ul>
   {% else %}
     <p>
-      No games have yet been played.
+      No games are in progress.
     </p>
   {% endif %}
 
@@ -29,4 +21,24 @@
       <button type="submit">Start a new game</button>
     </form>
   </p>
+
+  <h2>Finished Games</h2>
+  {% if games_finished %}
+    <ul>
+      {% for game in games_finished %}
+        <li>
+          <a href="/game/{{ game.id }}">Game {{ game.id }}</a>
+          {% if game.winner == Player.HUMAN %}
+            🥳 you won
+          {% else %}
+            🤖 AI won
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>
+      No games have yet been finished.
+    </p>
+  {% endif %}
 {% endblock %}

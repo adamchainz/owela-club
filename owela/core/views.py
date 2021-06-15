@@ -1,4 +1,3 @@
-from django.db.models import Case, When
 from django.http import HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods
@@ -10,16 +9,16 @@ from owela.core.models import Game
 
 @require_http_methods(["GET"])
 def index(request):
-    games = Game.objects.annotate(
-        in_progress_first=Case(When(state=GameState.IN_PROGRESS, then=0), default=1)
-    ).order_by("in_progress_first", "id")
+    games_in_progress = Game.objects.filter(state=GameState.IN_PROGRESS).order_by("id")
+    games_finished = Game.objects.filter(state=GameState.FINISHED).order_by("id")
 
     return render(
         request,
         "index.html",
         {
-            "games": games,
-            "GameState": GameState,
+            "games_in_progress": games_in_progress,
+            "games_finished": games_finished,
+            "Player": Player,
         },
     )
 

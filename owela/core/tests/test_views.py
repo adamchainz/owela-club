@@ -12,14 +12,19 @@ class IndexTests(TestCase):
 
         assert response.status_code == HTTPStatus.OK
         content = response.content.decode()
-        assert "No games have yet been played." in content
+        assert "No games are in progress." in content
+        assert "No games have yet been finished." in content
 
     def test_success(self):
-        game1 = Game.objects.create(
+        game1 = Game.objects.create()
+        game2 = Game.objects.create(
             state=GameState.FINISHED,
             winner=Player.HUMAN,
         )
-        game2 = Game.objects.create()
+        game3 = Game.objects.create(
+            state=GameState.FINISHED,
+            winner=Player.AI,
+        )
 
         response = self.client.get("/")
 
@@ -27,6 +32,9 @@ class IndexTests(TestCase):
         content = response.content.decode()
         assert f"Game {game1.id}" in content
         assert f"Game {game2.id}" in content
+        assert "🥳 you won" in content
+        assert f"Game {game3.id}" in content
+        assert "🤖 AI won" in content
 
 
 class NewGameTests(TestCase):
