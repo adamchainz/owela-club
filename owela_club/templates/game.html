@@ -51,7 +51,11 @@
             <td>
               {% if forloop.parentloop.counter0 < 2 or square < 2 or not human_can_move %}
                 {# AI or unselectable #}
-                {{ square }}
+                {% if square > 0 %}
+                  <strong>{{ square }}</strong>
+                {% else %}
+                  {{ square }}
+                {% endif %}
               {% else %}
                 {# selectable #}
                 <a href="#"
@@ -61,7 +65,7 @@
                    hx-target="#page"
                    hx-swap="outerHTML"
                 >
-                  {{ square }}
+                  <strong>{{ square }}</strong>
                 </a>
               {% endif %}
             </td>
