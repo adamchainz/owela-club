@@ -37,6 +37,22 @@ class IndexTests(TestCase):
         assert "🤖 AI won" in content
 
 
+class NumGamesInProgressTests(TestCase):
+    def test_empty(self):
+        response = self.client.get("/num-games-in-progress/")
+
+        assert response.status_code == HTTPStatus.OK
+        assert response.content.decode() == "0 games in progress\n"
+
+    def test_one(self):
+        Game.objects.create()
+
+        response = self.client.get("/num-games-in-progress/")
+
+        assert response.status_code == HTTPStatus.OK
+        assert response.content.decode() == "1 game in progress\n"
+
+
 class NewGameTests(TestCase):
     def test_success(self):
         response = self.client.post("/new-game/")

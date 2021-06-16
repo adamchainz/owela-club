@@ -11,6 +11,7 @@
   <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <div class="container">
       <div class="column column-100" id="page">
+        <div class="float-right" hx-get="/num-games-in-progress/" hx-trigger="load, every 2s"></div>
         <h1><a href="/">Owela Club</a></h1>
         {% block content %}{% endblock %}
       </div>

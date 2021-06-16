@@ -23,6 +23,12 @@ def index(request):
     )
 
 
+@require_http_methods(["GET"])
+def num_games_in_progress(request):
+    count = Game.objects.filter(state=GameState.IN_PROGRESS).count()
+    return render(request, "num_games_in_progress.html", {"count": count})
+
+
 @require_http_methods(["POST"])
 def new_game(request):
     game = Game.objects.create()
