@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 
-from owela_club.core.game import new_board
+from owela_club.game import new_board
 
 
 class Migration(migrations.Migration):

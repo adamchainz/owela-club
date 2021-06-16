@@ -25,7 +25,7 @@ MIDDLEWARE = [
 ]
 
 INSTALLED_APPS = [
-    "owela_club.core",
+    "owela_club",
     "django.contrib.staticfiles",
 ]
 

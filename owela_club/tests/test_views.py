@@ -2,8 +2,8 @@ from http import HTTPStatus
 
 from django.test import TestCase
 
-from owela_club.core.enums import GameState, Player
-from owela_club.core.models import Game
+from owela_club.enums import GameState, Player
+from owela_club.models import Game
 
 
 class IndexTests(TestCase):

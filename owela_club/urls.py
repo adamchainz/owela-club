@@ -1,6 +1,6 @@
 from django.urls import path
 
-from owela_club.core import views
+from owela_club import views
 
 urlpatterns = [
     path("", views.index),
