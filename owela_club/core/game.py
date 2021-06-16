@@ -1,6 +1,6 @@
 import random
 
-from owela.core.enums import Player
+from owela_club.core.enums import Player
 
 
 def new_board():

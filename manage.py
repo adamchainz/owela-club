@@ -4,7 +4,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "owela.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "owela_club.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

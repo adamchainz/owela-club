@@ -2,16 +2,16 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>{% block title %}Owela Central{% endblock %}</title>
+    <title>{% block title %}Owela Club{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'milligram-1.4.1.min.css' %}">
-    <link rel="stylesheet" href="{% static 'owela.css' %}">
-    <meta name="htmx-config" content='{"allowEval": false, "includeIndicatorStyles": false}'>
+    <link rel="stylesheet" href="{% static 'owela-club.css' %}">
+    <meta name="htmx-config" content='{"includeIndicatorStyles": false}'>
     <script src="{% static 'htmx-1.4.1.min.js' %}" async></script>
   </head>
   <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <div class="container">
       <div class="column column-100" id="page">
-        <h1><a href="/">Owela Central</a></h1>
+        <h1><a href="/">Owela Club</a></h1>
         {% block content %}{% endblock %}
       </div>
     </div>

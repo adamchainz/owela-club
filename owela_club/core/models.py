@@ -1,7 +1,7 @@
 from django.db import models
 
-from owela.core.enums import GameState, Player
-from owela.core.game import new_board
+from owela_club.core.enums import GameState, Player
+from owela_club.core.game import new_board
 
 
 class Game(models.Model):

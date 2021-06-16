@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase
 
-from owela.core.enums import Player
-from owela.core.game import (
+from owela_club.core.enums import Player
+from owela_club.core.game import (
     find_winner,
     make_move,
     new_board,

@@ -1,6 +1,6 @@
-=============
-Owela Central
-=============
+==========
+Owela Club
+==========
 
 A Django project for playing the Namibian game of Owela against a dumb AI.
 Built following the rules described on the `Mancala World wiki page for Owela <https://mancala.fandom.com/wiki/Owela>`__.

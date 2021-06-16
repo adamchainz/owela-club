@@ -25,11 +25,11 @@ MIDDLEWARE = [
 ]
 
 INSTALLED_APPS = [
-    "owela.core",
+    "owela_club.core",
     "django.contrib.staticfiles",
 ]
 
-ROOT_URLCONF = "owela.urls"
+ROOT_URLCONF = "owela_club.urls"
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
