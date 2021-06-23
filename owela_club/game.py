@@ -1,9 +1,11 @@
+from __future__ import annotations
+
 import random
 
 from owela_club.enums import Player
 
 
-def new_board():
+def new_board() -> list[list[int]]:
     return [
         [2] * 12,
         [2] * 5 + [0] * 7,
@@ -12,7 +14,7 @@ def new_board():
     ]
 
 
-def next_anti_clockwise_position(row, column):
+def next_anti_clockwise_position(row: int, column: int) -> tuple[int, int]:
     """
     Given any position on the board, go to the next one following the
     anti-clockwise pattern.
@@ -33,7 +35,7 @@ def next_anti_clockwise_position(row, column):
     return row, column
 
 
-def make_move(board, row, column):
+def make_move(board: list[list[int]], row: int, column: int) -> None:
     """
     Follow through a move, including captures.
     """
@@ -68,7 +70,7 @@ def make_move(board, row, column):
             hand_seeds -= 1
 
 
-def pick_ai_move(board):
+def pick_ai_move(board: list[list[int]]) -> tuple[int, int]:
     """
     Randomly pick a legitimate AI move.
     TODO: deep learning.
@@ -82,7 +84,7 @@ def pick_ai_move(board):
     return random.choice(candidates)
 
 
-def find_winner(board):
+def find_winner(board: list[list[int]]) -> int | None:
     """
     Return the Player value for the winner of this board, or None if no one has
     won yet.

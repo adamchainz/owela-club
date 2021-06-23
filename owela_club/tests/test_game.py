@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from django.test import SimpleTestCase
 
 from owela_club.enums import Player

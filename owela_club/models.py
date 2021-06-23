@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from django.db import models
 
 from owela_club.enums import GameState, Player

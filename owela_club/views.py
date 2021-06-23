@@ -1,4 +1,6 @@
-from django.http import HttpResponseBadRequest
+from __future__ import annotations
+
+from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods
 
@@ -8,7 +10,7 @@ from owela_club.models import Game
 
 
 @require_http_methods(["GET"])
-def index(request):
+def index(request: HttpRequest) -> HttpResponse:
     games_in_progress = Game.objects.filter(state=GameState.IN_PROGRESS).order_by("id")
     games_finished = Game.objects.filter(state=GameState.FINISHED).order_by("id")
 
@@ -24,19 +26,19 @@ def index(request):
 
 
 @require_http_methods(["GET"])
-def num_games_in_progress(request):
+def num_games_in_progress(request: HttpRequest) -> HttpResponse:
     count = Game.objects.filter(state=GameState.IN_PROGRESS).count()
     return render(request, "num_games_in_progress.html", {"count": count})
 
 
 @require_http_methods(["POST"])
-def new_game(request):
+def new_game(request: HttpRequest) -> HttpResponse:
     game = Game.objects.create()
     return redirect(f"/game/{game.id}/")
 
 
 @require_http_methods(["GET"])
-def game(request, game_id):
+def game(request: HttpRequest, game_id: int) -> HttpResponse:
     game = get_object_or_404(Game, id=game_id)
     human_can_move = (
         game.state == GameState.IN_PROGRESS and game.next_turn == Player.HUMAN
@@ -60,7 +62,7 @@ def game(request, game_id):
 
 
 @require_http_methods(["POST"])
-def move(request, game_id, row, column):
+def move(request: HttpRequest, game_id: int, row: int, column: int) -> HttpResponse:
     game = get_object_or_404(
         Game,
         id=game_id,
@@ -88,7 +90,7 @@ def move(request, game_id, row, column):
 
 
 @require_http_methods(["POST"])
-def ai_move(request, game_id):
+def ai_move(request: HttpRequest, game_id: int) -> HttpResponse:
     game = get_object_or_404(
         Game,
         id=game_id,

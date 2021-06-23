@@ -1,9 +1,11 @@
 #!/usr/bin/env python
-import os  # noqa: INP001
+from __future__ import annotations  # noqa: INP001
+
+import os
 import sys
 
 
-def main():
+def main() -> None:
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "owela_club.settings")
     try:
         from django.core.management import execute_from_command_line
