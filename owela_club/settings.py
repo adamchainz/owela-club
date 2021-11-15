@@ -23,13 +23,23 @@ DATABASES = {
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
 
 INSTALLED_APPS = [
+    # Project
     "owela_club",
+    # Third Party
+    "debug_toolbar",
+    # Contrib
     "django.contrib.staticfiles",
 ]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 
 ROOT_URLCONF = "owela_club.urls"
 

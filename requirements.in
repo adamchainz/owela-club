@@ -1,4 +1,5 @@
 django
+django-debug-toolbar
 django-htmx
 pytest
 pytest-cov

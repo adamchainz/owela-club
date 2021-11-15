@@ -13,7 +13,10 @@ coverage[toml]==6.0
 django==3.2.8
     # via
     #   -r requirements.in
+    #   django-debug-toolbar
     #   django-htmx
+django-debug-toolbar==3.2.2
+    # via -r requirements.in
 django-htmx==1.4.0
     # via -r requirements.in
 iniconfig==1.1.1
@@ -38,7 +41,9 @@ pytest-django==4.4.0
 pytz==2021.3
     # via django
 sqlparse==0.4.2
-    # via django
+    # via
+    #   django
+    #   django-debug-toolbar
 toml==0.10.2
     # via pytest
 tomli==1.2.1

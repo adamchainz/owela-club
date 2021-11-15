@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from django.urls import path
+import debug_toolbar
+from django.urls import include, path
 
 from owela_club import views
 
@@ -11,4 +12,5 @@ urlpatterns = [
     path("game/<int:game_id>/", views.game),
     path("game/<int:game_id>/move/<int:row>/<int:column>/", views.move),
     path("game/<int:game_id>/ai-move/", views.ai_move),
+    path("__debug__/", include(debug_toolbar.urls)),
 ]
