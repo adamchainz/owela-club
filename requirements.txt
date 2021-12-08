@@ -10,7 +10,7 @@ attrs==21.2.0
     # via pytest
 coverage[toml]==6.2
     # via pytest-cov
-django==3.2.10
+django==4.0
     # via
     #   -r requirements.in
     #   django-debug-toolbar
@@ -36,10 +36,8 @@ pytest==6.2.5
     #   pytest-django
 pytest-cov==3.0.0
     # via -r requirements.in
-pytest-django==4.5.1
+pytest-django==4.5.2
     # via -r requirements.in
-pytz==2021.3
-    # via django
 sqlparse==0.4.2
     # via
     #   django
