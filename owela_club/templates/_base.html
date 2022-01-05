@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'milligram-1.4.1.min.css' %}">
     <link rel="stylesheet" href="{% static 'owela-club.css' %}">
     <meta name="htmx-config" content='{"includeIndicatorStyles": false}'>
-    <script src="{% static 'htmx-1.5.0.min.js' %}" async></script>
+    <script src="{% static 'htmx-1.5.0.min.js' %}" defer></script>
   </head>
   <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <div class="container">
