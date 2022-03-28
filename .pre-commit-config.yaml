@@ -48,6 +48,6 @@ repos:
           - flake8-no-pep420==2.0.0
           - flake8-tidy-imports==4.5.0
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.941
+    rev: v0.942
     hooks:
       - id: mypy
